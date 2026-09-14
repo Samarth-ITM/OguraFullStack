@@ -1,0 +1,203 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-deep: var(--deep);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-hover: var(--hover-surface);
+  --color-foreground: var(--foreground);
+  --color-secondary-text: var(--secondary-text);
+  --color-muted-text: var(--muted-text);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-rose: var(--rose);
+  --color-rose-hover: var(--rose-hover);
+  --color-rose-active: var(--rose-active);
+  --color-wine: var(--wine);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--raised);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--rose);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--raised);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--muted-text);
+  --color-accent: var(--hover-surface);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--error);
+  --color-destructive-foreground: #ffffff;
+  --color-input: var(--border);
+  --color-ring: var(--rose);
+
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
+}
+
+:root {
+  --background: #fdfbf6;
+  --deep: #faf7f0;
+  --surface: #f8f4ec;
+  --raised: #ffffff;
+  --hover-surface: #f2ece1;
+  --foreground: #171417;
+  --secondary-text: #5f595c;
+  --muted-text: #817a7e;
+  --border: #e8e1d5;
+  --border-strong: #cfc6b6;
+  --rose: #de3163;
+  --rose-hover: #ea4a78;
+  --rose-active: #c02150;
+  --wine: #6d102f;
+  --success: #2f8f62;
+  --warning: #d69e2e;
+  --error: #d94c4c;
+  --radius: 3px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    background-color: var(--deep);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+  }
+
+  ::selection {
+    background: var(--rose);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select {
+    color-scheme: light;
+  }
+}
+
+@utility og-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (min-width: 768px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+  @media (min-width: 1440px) {
+    padding-inline: 64px;
+  }
+}
+
+@utility container-og {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (min-width: 768px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+  @media (min-width: 1440px) {
+    padding-inline: 64px;
+  }
+}
+
+@utility eyebrow {
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted-text);
+}
+
+@utility display-h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 0.96;
+  font-size: 46px;
+  @media (min-width: 768px) {
+    font-size: 56px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 80px;
+  }
+}
+
+@utility display-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.02;
+  font-size: 34px;
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 48px;
+  }
+}
+
+@utility og-rail {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > * {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
