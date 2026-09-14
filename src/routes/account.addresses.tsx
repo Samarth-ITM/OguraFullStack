@@ -30,7 +30,8 @@ const BLANK: Address = {
 
 function AddressesPage() {
   const draftAddress = useOguraState((s) => s.checkoutDraft?.address ?? null);
-  const list = draftAddress ? [draftAddress] : [];
+  const hasDraftAddress = Boolean(draftAddress?.fullName?.trim() && draftAddress?.line1?.trim());
+  const list = hasDraftAddress && draftAddress ? [draftAddress] : [];
 
   const [form, setForm] = useState<Address>(BLANK);
   const [local, setLocal] = useState<Address[]>([]);

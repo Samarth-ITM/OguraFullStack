@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { signIn, signOut, useOguraState } from "@/state/store";
@@ -20,6 +20,10 @@ export const Route = createFileRoute("/account/profile")({
 function ProfilePage() {
   const profile = useOguraState((s) => s.profile);
   const [form, setForm] = useState({ name: profile.name, email: profile.email, phone: profile.phone });
+
+  useEffect(() => {
+    setForm({ name: profile.name, email: profile.email, phone: profile.phone });
+  }, [profile.name, profile.email, profile.phone]);
 
   return (
     <div className="max-w-md space-y-5">

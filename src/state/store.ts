@@ -86,17 +86,25 @@ export function getState(): OguraState {
 /* -------------------------------------------------- cart */
 
 export function addToCart(productId: string, variantId: string, quantity = 1): Cart {
-  const lines = state.cart.lines.slice();
-  const existing = lines.find((l) => l.variantId === variantId);
-  if (existing) existing.quantity = Math.min(10, existing.quantity + quantity);
-  else
-    lines.push({
-      id: `${variantId}-${Date.now()}`,
-      productId,
-      variantId,
-      quantity,
-      addedAt: Date.now(),
-    });
+  const safeQty = Math.max(1, Math.min(10, Math.floor(quantity) || 1));
+  const existing = state.cart.lines.find((l) => l.variantId === variantId);
+  let lines: CartLine[];
+  if (existing) {
+    lines = state.cart.lines.map((l) =>
+      l.variantId === variantId ? { ...l, quantity: Math.min(10, l.quantity + safeQty) } : l,
+    );
+  } else {
+    lines = [
+      ...state.cart.lines,
+      {
+        id: `${variantId}-${Date.now()}`,
+        productId,
+        variantId,
+        quantity: safeQty,
+        addedAt: Date.now(),
+      },
+    ];
+  }
   const cart = { lines };
   set({ cart });
   writeJSON(KEYS.cart, cart);
