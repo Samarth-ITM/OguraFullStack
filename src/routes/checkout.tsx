@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import type { CheckoutDraft } from "@/domain/commerce";
 import { productById, variantsByProduct } from "@/repositories/mock/catalog";
-import { repositories } from "@/repositories";
+import { repositories, accountRepository } from "@/repositories";
+import { supabase } from "@/lib/supabase";
 import { EMPTY_DRAFT, clearCart, saveCheckoutDraft, saveOrder, setBuyNow, useOguraState } from "@/state/store";
 import { formatINR } from "@/lib/format";
 import { EmptyState, Eyebrow, OgButton, OgInput, OgLinkButton } from "@/components/ui-og/primitives";
@@ -34,6 +35,19 @@ function CheckoutPage() {
   const [placing, setPlacing] = useState(false);
   const [quote, setQuote] = useState<import("@/repositories/contracts").AuthoritativeQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
+  const requiresAuth = supabase.isConfigured();
+  const [authed, setAuthed] = useState(!requiresAuth);
+
+  useEffect(() => {
+    if (!requiresAuth) return;
+    let active = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setAuthed(Boolean(data.session?.access_token));
+    });
+    return () => {
+      active = false;
+    };
+  }, [requiresAuth]);
 
   const lines = buyNow ? [buyNow] : cartLines;
   const rows = useMemo(
@@ -86,6 +100,15 @@ function CheckoutPage() {
     if (Object.keys(relevant).length) return;
     saveCheckoutDraft(draft);
 
+    // Persist the delivery address to the customer account (existing repository contract)
+    if (step === 1 && authed && accountRepository.saveAddress) {
+      try {
+        await accountRepository.saveAddress(draft.address);
+      } catch {
+        // Address persistence is best-effort; the authoritative quote still receives the address.
+      }
+    }
+
     // If moving to Delivery/Payment/Review, fetch authoritative server quote
     if (step >= 1 && repositories.checkout.createAuthoritativeQuote) {
       try {
@@ -112,6 +135,10 @@ function CheckoutPage() {
   };
 
   const placeOrder = async () => {
+    if (requiresAuth && !authed) {
+      setQuoteError("Please sign in to complete your purchase.");
+      return;
+    }
     const found = await repositories.checkout.validateDraft(draft);
     if (Object.keys(found).length) {
       setErrors(found);
@@ -316,6 +343,17 @@ function CheckoutPage() {
             </p>
           ) : null}
 
+          {requiresAuth && !authed ? (
+            <div className="border border-border p-4 text-sm">
+              <p className="text-secondary-text">Sign in with Google or your mobile number to complete this order.</p>
+              <OgLinkButton to="/account/profile" className="mt-3">
+                Sign in
+              </OgLinkButton>
+            </div>
+          ) : null}
+
+
+
           <div className="flex flex-wrap gap-3">
             {step > 0 ? (
               <OgButton variant="secondary" onClick={() => setStep((s) => s - 1)}>
@@ -325,8 +363,8 @@ function CheckoutPage() {
             {step < STEPS.length - 1 ? (
               <OgButton onClick={next}>Continue</OgButton>
             ) : (
-              <OgButton onClick={placeOrder} disabled={placing}>
-                {placing ? "Placing order…" : "Place prototype order"}
+              <OgButton onClick={placeOrder} disabled={placing || (requiresAuth && !authed)}>
+                {placing ? "Placing order…" : "Place order"}
               </OgButton>
             )}
           </div>
