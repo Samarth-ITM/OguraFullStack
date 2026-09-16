@@ -2277,11 +2277,51 @@ export type Database = {
         Args: { p_product_id: string }
         Returns: boolean
       }
+      cancel_checkout_quote: { Args: { p_quote_id: string }; Returns: boolean }
+      cancel_order: {
+        Args: { p_order_id: string; p_reason?: string }
+        Returns: boolean
+      }
       clear_customer_cart: { Args: never; Returns: boolean }
+      confirm_order_payment: {
+        Args: {
+          p_gateway_payment_id: string
+          p_gateway_signature?: string
+          p_order_id: string
+        }
+        Returns: Json
+      }
+      consume_inventory_reservation: {
+        Args: { p_reservation_id: string }
+        Returns: boolean
+      }
+      consume_quote_reservations: {
+        Args: { p_quote_id: string }
+        Returns: number
+      }
+      create_checkout_quote: {
+        Args: { p_address_id?: string; p_custom_address?: Json }
+        Returns: Json
+      }
+      create_inventory_reservation: {
+        Args: { p_quantity: number; p_quote_id: string; p_variant_id: string }
+        Returns: string
+      }
+      create_order_from_quote: { Args: { p_quote_id: string }; Returns: Json }
       current_seller_id: { Args: never; Returns: string }
+      expire_inventory_reservation: {
+        Args: { p_reservation_id: string }
+        Returns: boolean
+      }
+      expire_stale_reservations: {
+        Args: { p_batch_limit?: number }
+        Returns: number
+      }
+      get_checkout_quote: { Args: { p_quote_id: string }; Returns: Json }
       get_customer_cart: { Args: never; Returns: Json }
       get_customer_wishlist: { Args: never; Returns: Json }
       get_or_create_customer_cart: { Args: never; Returns: string }
+      get_order_details: { Args: { p_order_id: string }; Returns: Json }
       get_public_catalog: {
         Args: {
           p_brand_slugs?: string[]
@@ -2300,6 +2340,10 @@ export type Database = {
         Returns: Json
       }
       get_public_product_by_slug: { Args: { p_slug: string }; Returns: Json }
+      get_variant_available_stock: {
+        Args: { p_variant_id: string }
+        Returns: number
+      }
       has_role: {
         Args: { required_role: Database["public"]["Enums"]["user_role_type"] }
         Returns: boolean
@@ -2316,11 +2360,31 @@ export type Database = {
         Returns: boolean
       }
       reactivate_seller: { Args: { p_seller_id: string }; Returns: boolean }
+      record_payment_failure: {
+        Args: {
+          p_error_code: string
+          p_error_description: string
+          p_order_id: string
+        }
+        Returns: Json
+      }
       reject_product: {
         Args: { p_product_id: string; p_reason: string }
         Returns: Json
       }
+      release_inventory_reservation: {
+        Args: { p_reservation_id: string }
+        Returns: boolean
+      }
+      release_quote_reservations: {
+        Args: { p_quote_id: string }
+        Returns: number
+      }
       remove_cart_line: { Args: { p_line_id: string }; Returns: boolean }
+      reserve_inventory_for_quote: {
+        Args: { p_items: Json; p_quote_id: string }
+        Returns: Json
+      }
       review_seller_kyc_document: {
         Args: {
           p_document_id: string
