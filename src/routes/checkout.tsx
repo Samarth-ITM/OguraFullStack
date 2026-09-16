@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import type { CheckoutDraft } from "@/domain/commerce";
 import { productById, variantsByProduct } from "@/repositories/mock/catalog";
-import { repositories } from "@/repositories";
+import { repositories, accountRepository } from "@/repositories";
+import { supabase } from "@/lib/supabase";
 import { EMPTY_DRAFT, clearCart, saveCheckoutDraft, saveOrder, setBuyNow, useOguraState } from "@/state/store";
 import { formatINR } from "@/lib/format";
 import { EmptyState, Eyebrow, OgButton, OgInput, OgLinkButton } from "@/components/ui-og/primitives";
