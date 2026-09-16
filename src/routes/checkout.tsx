@@ -363,8 +363,8 @@ function CheckoutPage() {
             {step < STEPS.length - 1 ? (
               <OgButton onClick={next}>Continue</OgButton>
             ) : (
-              <OgButton onClick={placeOrder} disabled={placing}>
-                {placing ? "Placing order…" : "Place prototype order"}
+              <OgButton onClick={placeOrder} disabled={placing || (requiresAuth && !authed)}>
+                {placing ? "Placing order…" : "Place order"}
               </OgButton>
             )}
           </div>
