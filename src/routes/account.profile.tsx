@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { signIn, signOut, useOguraState } from "@/state/store";
 import { accountRepository } from "@/repositories";
 import { supabase } from "@/lib/supabase";
+import { lovable } from "@/integrations/lovable";
 import { OgButton, OgInput } from "@/components/ui-og/primitives";
 
 export const Route = createFileRoute("/account/profile")({
@@ -63,7 +64,6 @@ function ProfilePage() {
       }
       setOtpSent(true);
       toast.success("Verification code sent");
-      toast("Sample test code: 123456", { description: "Demo only — for testing the sign-in screen." });
       setLoading(false);
     } else {
       // Offline / Dev mode fallback
@@ -112,16 +112,24 @@ function ProfilePage() {
     setLoading(true);
     setAuthError("");
     if (supabase.isConfigured()) {
-      const res = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: typeof window !== "undefined" ? `${window.location.origin}/account/profile` : undefined,
-        },
-      });
-      if (res.error) {
-        setAuthError(res.error.message);
-        setLoading(false);
+      try {
+        const result = await lovable.auth.signInWithOAuth("google", {
+          redirect_uri: typeof window !== "undefined" ? window.location.origin : "",
+        });
+        if (result.error) {
+          setAuthError(result.error.message || "Google sign-in failed.");
+          setLoading(false);
+          return;
+        }
+        if (result.redirected) return;
+        if (result.tokens?.access_token) {
+          supabase.auth.setSessionFromTokens(result.tokens);
+          toast.success("Signed in with Google");
+        }
+      } catch (err) {
+        setAuthError(err instanceof Error ? err.message : "Google sign-in failed.");
       }
+      setLoading(false);
     } else {
       signIn({ name: "Demo User", email: "user@example.com", phone: "", signedIn: true });
       toast.success("Signed in with Google (demo mode)");

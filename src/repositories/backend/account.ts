@@ -58,6 +58,8 @@ export const backendAccountRepository: AccountRepository = {
       return GUEST_PROFILE;
     }
 
+    const metaName = (authData.user.user_metadata?.["full_name"] as string) || "";
+
     try {
       const res = await supabase
         .from<any>("profiles")
@@ -67,17 +69,27 @@ export const backendAccountRepository: AccountRepository = {
 
       if (res.data) {
         return {
-          name: res.data.name || authData.user.user_metadata?.["full_name"] || "Ogura Customer",
+          name: res.data.full_name || metaName || "Ogura Customer",
           email: res.data.email || authData.user.email || "",
           phone: res.data.phone || authData.user.phone || "",
           signedIn: true,
         };
       }
 
+      // First login for this authenticated user: create the canonical profile row.
+      // Ownership is enforced server-side by RLS (id = auth.uid()).
+      const created = await supabase.from<any>("profiles").insert({
+        id: authData.user.id,
+        email: authData.user.email || null,
+        phone: authData.user.phone || null,
+        full_name: metaName || null,
+        is_active: true,
+      });
+
       return {
-        name: (authData.user.user_metadata?.["full_name"] as string) || "Ogura Customer",
-        email: authData.user.email || "",
-        phone: authData.user.phone || "",
+        name: created.data?.full_name || metaName || "Ogura Customer",
+        email: created.data?.email || authData.user.email || "",
+        phone: created.data?.phone || authData.user.phone || "",
         signedIn: true,
       };
     } catch {
@@ -93,7 +105,7 @@ export const backendAccountRepository: AccountRepository = {
 
     try {
       const payload: Record<string, unknown> = {};
-      if (patch.name !== undefined) payload["name"] = patch.name;
+      if (patch.name !== undefined) payload["full_name"] = patch.name;
       if (patch.email !== undefined) payload["email"] = patch.email;
       if (patch.phone !== undefined) payload["phone"] = patch.phone;
 
