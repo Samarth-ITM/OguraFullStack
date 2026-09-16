@@ -35,7 +35,7 @@ export function isBackendConfigured(): boolean {
   if (typeof import.meta === "undefined" || !import.meta.env) return false;
   return Boolean(
     import.meta.env["VITE_SUPABASE_URL"] &&
-    import.meta.env["VITE_SUPABASE_ANON_KEY"]
+    (import.meta.env["VITE_SUPABASE_ANON_KEY"] || import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"])
   );
 }
 

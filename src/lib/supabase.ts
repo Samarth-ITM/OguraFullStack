@@ -44,7 +44,10 @@ class SupabaseTransport {
 
   constructor() {
     this.url = (typeof import.meta !== "undefined" && import.meta.env?.["VITE_SUPABASE_URL"]) || "";
-    this.anonKey = (typeof import.meta !== "undefined" && import.meta.env?.["VITE_SUPABASE_ANON_KEY"]) || "";
+    this.anonKey =
+      (typeof import.meta !== "undefined" &&
+        (import.meta.env?.["VITE_SUPABASE_ANON_KEY"] || import.meta.env?.["VITE_SUPABASE_PUBLISHABLE_KEY"])) ||
+      "";
     this.loadSession();
   }
 
