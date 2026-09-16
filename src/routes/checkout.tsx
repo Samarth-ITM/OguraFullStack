@@ -135,6 +135,10 @@ function CheckoutPage() {
   };
 
   const placeOrder = async () => {
+    if (requiresAuth && !authed) {
+      setQuoteError("Please sign in to complete your purchase.");
+      return;
+    }
     const found = await repositories.checkout.validateDraft(draft);
     if (Object.keys(found).length) {
       setErrors(found);
