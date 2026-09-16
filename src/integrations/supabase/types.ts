@@ -1962,6 +1962,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      current_seller_id: { Args: never; Returns: string }
+      has_role: {
+        Args: { required_role: Database["public"]["Enums"]["user_role_type"] }
+        Returns: boolean
+      }
+      is_verified_purchase: { Args: { p_product_id: string }; Returns: boolean }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
     }
