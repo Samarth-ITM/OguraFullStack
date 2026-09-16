@@ -149,7 +149,7 @@ function RootComponent() {
         <MobileDrawer />
         <SearchOverlay />
         <CartDrawer />
-        <Toaster position="bottom-right" theme="dark" />
+        <Toaster position="top-right" theme="dark" duration={5000} closeButton />
       </UiProvider>
     </QueryClientProvider>
   );
