@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import type { CheckoutDraft } from "@/domain/commerce";
 import { productById, variantsByProduct } from "@/repositories/mock/catalog";
-import { repositories, accountRepository } from "@/repositories";
+import { repositories, accountRepository, cartRepository } from "@/repositories";
 import { supabase } from "@/lib/supabase";
 import { EMPTY_DRAFT, clearCart, saveCheckoutDraft, saveOrder, setBuyNow, useOguraState } from "@/state/store";
 import { formatINR } from "@/lib/format";
@@ -115,6 +115,11 @@ function CheckoutPage() {
     // If moving to Delivery/Payment/Review, fetch authoritative server quote
     if (step >= 1 && repositories.checkout.createAuthoritativeQuote) {
       try {
+        // Ensure the authenticated customer's server-side cart exists and holds the
+        // guest lines before the authoritative quote is requested.
+        if (authed) {
+          await (cartRepository.mergeGuestCart?.() ?? Promise.resolve(false));
+        }
         const customAddr = {
           full_name: draft.address.fullName,
           phone: draft.phone,

@@ -56,9 +56,12 @@ async function syncWithBackend(): Promise<void> {
   const { data: authData } = await supabase.auth.getUser();
   if (authData.user && supabase.isConfigured()) {
     try {
-      const [profile, , cart, wishlist, orders] = await Promise.all([
+      // Merge any guest cart into the authenticated server cart BEFORE reading it,
+      // otherwise the read races the merge and the customer appears to have no cart.
+      await (cartRepository.mergeGuestCart?.() ?? Promise.resolve(false));
+
+      const [profile, cart, wishlist, orders] = await Promise.all([
         accountRepository.getProfile(),
-        cartRepository.mergeGuestCart?.() ?? Promise.resolve(false),
         cartRepository.getCart(),
         wishlistRepository.list(),
         accountRepository.listOrders(),
