@@ -251,6 +251,38 @@ class SupabaseTransport {
         this.notifyAuth(session ? "SIGNED_IN" : "SIGNED_OUT");
       },
 
+      setSessionFromTokens: (tokens: {
+        access_token: string;
+        refresh_token?: string;
+        expires_in?: number;
+        token_type?: string;
+      }): void => {
+        let user: AuthUser = { id: "" };
+        try {
+          const parts = tokens.access_token.split(".");
+          if (parts.length === 3 && parts[1]) {
+            const payload = JSON.parse(atob(parts[1].replace(/-/g, "+").replace(/_/g, "/")));
+            user = {
+              id: payload.sub || "",
+              email: payload.email,
+              phone: payload.phone,
+              role: payload.role,
+              user_metadata: payload.user_metadata,
+            };
+          }
+        } catch {
+          user = { id: "" };
+        }
+        this.persistSession({
+          access_token: tokens.access_token,
+          refresh_token: tokens.refresh_token || "",
+          expires_in: tokens.expires_in || 3600,
+          token_type: tokens.token_type || "bearer",
+          user,
+        });
+        this.notifyAuth("SIGNED_IN");
+      },
+
       signOut: async (): Promise<{ error: null }> => {
         if (this.isConfigured() && this.session?.access_token) {
           try {
