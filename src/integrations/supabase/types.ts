@@ -2278,7 +2278,19 @@ export type Database = {
         Returns: boolean
       }
       cancel_checkout_quote: { Args: { p_quote_id: string }; Returns: boolean }
+      cancel_order: {
+        Args: { p_order_id: string; p_reason?: string }
+        Returns: boolean
+      }
       clear_customer_cart: { Args: never; Returns: boolean }
+      confirm_order_payment: {
+        Args: {
+          p_gateway_payment_id: string
+          p_gateway_signature?: string
+          p_order_id: string
+        }
+        Returns: Json
+      }
       consume_inventory_reservation: {
         Args: { p_reservation_id: string }
         Returns: boolean
@@ -2295,6 +2307,7 @@ export type Database = {
         Args: { p_quantity: number; p_quote_id: string; p_variant_id: string }
         Returns: string
       }
+      create_order_from_quote: { Args: { p_quote_id: string }; Returns: Json }
       current_seller_id: { Args: never; Returns: string }
       expire_inventory_reservation: {
         Args: { p_reservation_id: string }
@@ -2308,6 +2321,7 @@ export type Database = {
       get_customer_cart: { Args: never; Returns: Json }
       get_customer_wishlist: { Args: never; Returns: Json }
       get_or_create_customer_cart: { Args: never; Returns: string }
+      get_order_details: { Args: { p_order_id: string }; Returns: Json }
       get_public_catalog: {
         Args: {
           p_brand_slugs?: string[]
@@ -2346,6 +2360,14 @@ export type Database = {
         Returns: boolean
       }
       reactivate_seller: { Args: { p_seller_id: string }; Returns: boolean }
+      record_payment_failure: {
+        Args: {
+          p_error_code: string
+          p_error_description: string
+          p_order_id: string
+        }
+        Returns: Json
+      }
       reject_product: {
         Args: { p_product_id: string; p_reason: string }
         Returns: Json
