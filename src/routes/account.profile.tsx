@@ -64,7 +64,6 @@ function ProfilePage() {
       }
       setOtpSent(true);
       toast.success("Verification code sent");
-      toast("Sample test code: 123456", { description: "Demo only — for testing the sign-in screen." });
       setLoading(false);
     } else {
       // Offline / Dev mode fallback
