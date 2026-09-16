@@ -54,6 +54,9 @@ function ProfilePage() {
     }
   };
 
+  const DEMO_OTP = "123456";
+  const [demoMode, setDemoMode] = useState(false);
+
   const handleRequestOtp = async () => {
     const phone = normalisePhone(phoneInput);
     if (!phone) {
@@ -65,10 +68,14 @@ function ProfilePage() {
 
     const res = await supabase.auth.signInWithOtp({ phone });
     if (res.error) {
-      setAuthError(res.error.message);
+      // No live SMS provider — fall back to a clearly-labelled demo code.
+      setDemoMode(true);
+      setOtpSent(true);
+      toast.success(`Demo code: ${DEMO_OTP}`, { description: "Simulated SMS — no real message sent." });
       setLoading(false);
       return;
     }
+    setDemoMode(false);
     setOtpSent(true);
     toast.success("Verification code sent");
     setLoading(false);
@@ -87,6 +94,20 @@ function ProfilePage() {
     setLoading(true);
     setAuthError("");
 
+    if (demoMode) {
+      if (otpCode !== DEMO_OTP) {
+        setAuthError("Incorrect demo code.");
+        setLoading(false);
+        return;
+      }
+      signIn({ ...form, phone, signedIn: true });
+      toast.success("Signed in (demo)", { description: "Simulated sign-in — not a real account session." });
+      setOtpSent(false);
+      setOtpCode("");
+      setLoading(false);
+      return;
+    }
+
     const res = await supabase.auth.verifyOtp({ phone, token: otpCode, type: "sms" });
     if (res.error) {
       setAuthError(res.error.message);
@@ -98,6 +119,7 @@ function ProfilePage() {
     setOtpCode("");
     setLoading(false);
   };
+
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
