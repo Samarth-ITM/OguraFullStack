@@ -100,6 +100,15 @@ function CheckoutPage() {
     if (Object.keys(relevant).length) return;
     saveCheckoutDraft(draft);
 
+    // Persist the delivery address to the customer account (existing repository contract)
+    if (step === 1 && authed && accountRepository.saveAddress) {
+      try {
+        await accountRepository.saveAddress(draft.address);
+      } catch {
+        // Address persistence is best-effort; the authoritative quote still receives the address.
+      }
+    }
+
     // If moving to Delivery/Payment/Review, fetch authoritative server quote
     if (step >= 1 && repositories.checkout.createAuthoritativeQuote) {
       try {
