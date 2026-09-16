@@ -115,6 +115,11 @@ function CheckoutPage() {
     // If moving to Delivery/Payment/Review, fetch authoritative server quote
     if (step >= 1 && repositories.checkout.createAuthoritativeQuote) {
       try {
+        // Ensure the authenticated customer's server-side cart exists and holds the
+        // guest lines before the authoritative quote is requested.
+        if (authed) {
+          await (cartRepository.mergeGuestCart?.() ?? Promise.resolve(false));
+        }
         const customAddr = {
           full_name: draft.address.fullName,
           phone: draft.phone,
