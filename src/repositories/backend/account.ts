@@ -105,7 +105,7 @@ export const backendAccountRepository: AccountRepository = {
 
     try {
       const payload: Record<string, unknown> = {};
-      if (patch.name !== undefined) payload["name"] = patch.name;
+      if (patch.name !== undefined) payload["full_name"] = patch.name;
       if (patch.email !== undefined) payload["email"] = patch.email;
       if (patch.phone !== undefined) payload["phone"] = patch.phone;
 
