@@ -1950,6 +1950,8 @@ export type Database = {
       }
       sellers: {
         Row: {
+          approved_at: string | null
+          approved_by: string | null
           business_name: string
           commission_rate_bps: number | null
           created_at: string
@@ -1957,12 +1959,16 @@ export type Database = {
           id: string
           legal_entity_name: string
           pan: string | null
+          razorpay_account_id: string | null
           seller_slug: string
           status: Database["public"]["Enums"]["seller_status"]
+          suspended_reason: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
           business_name: string
           commission_rate_bps?: number | null
           created_at?: string
@@ -1970,12 +1976,16 @@ export type Database = {
           id?: string
           legal_entity_name: string
           pan?: string | null
+          razorpay_account_id?: string | null
           seller_slug: string
           status?: Database["public"]["Enums"]["seller_status"]
+          suspended_reason?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          approved_at?: string | null
+          approved_by?: string | null
           business_name?: string
           commission_rate_bps?: number | null
           created_at?: string
@@ -1983,12 +1993,21 @@ export type Database = {
           id?: string
           legal_entity_name?: string
           pan?: string | null
+          razorpay_account_id?: string | null
           seller_slug?: string
           status?: Database["public"]["Enums"]["seller_status"]
+          suspended_reason?: string | null
           updated_at?: string
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "sellers_approved_by_fkey"
+            columns: ["approved_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "sellers_user_id_fkey"
             columns: ["user_id"]
@@ -2238,7 +2257,18 @@ export type Database = {
       }
     }
     Functions: {
+      apply_as_seller: {
+        Args: {
+          p_business_name: string
+          p_gstin?: string
+          p_legal_entity_name: string
+          p_pan?: string
+          p_seller_slug: string
+        }
+        Returns: string
+      }
       approve_product: { Args: { p_product_id: string }; Returns: Json }
+      approve_seller: { Args: { p_seller_id: string }; Returns: boolean }
       can_seller_write_product: {
         Args: { p_product_id: string }
         Returns: boolean
@@ -2267,20 +2297,50 @@ export type Database = {
         Returns: boolean
       }
       is_product_visible: { Args: { p_product_id: string }; Returns: boolean }
+      is_seller_payout_eligible: {
+        Args: { p_seller_id: string }
+        Returns: boolean
+      }
       is_verified_purchase: { Args: { p_product_id: string }; Returns: boolean }
       product_has_available_inventory: {
         Args: { p_product_id: string }
         Returns: boolean
       }
+      reactivate_seller: { Args: { p_seller_id: string }; Returns: boolean }
       reject_product: {
         Args: { p_product_id: string; p_reason: string }
         Returns: Json
+      }
+      review_seller_kyc_document: {
+        Args: {
+          p_document_id: string
+          p_rejection_reason?: string
+          p_status: Database["public"]["Enums"]["kyc_verification_status"]
+        }
+        Returns: boolean
+      }
+      set_seller_razorpay_account: {
+        Args: { p_razorpay_account_id: string; p_seller_id: string }
+        Returns: boolean
       }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
       submit_product_for_review: {
         Args: { p_product_id: string }
         Returns: Json
+      }
+      suspend_seller: {
+        Args: { p_reason: string; p_seller_id: string }
+        Returns: boolean
+      }
+      verify_seller_bank_account: {
+        Args: {
+          p_bank_account_id: string
+          p_fund_account_id?: string
+          p_is_verified: boolean
+          p_penny_drop_status: string
+        }
+        Returns: boolean
       }
     }
     Enums: {
