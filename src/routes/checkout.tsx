@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 import type { CheckoutDraft } from "@/domain/commerce";
 import { productById, variantsByProduct } from "@/repositories/mock/catalog";
 import { repositories, accountRepository } from "@/repositories";
 import { supabase } from "@/lib/supabase";
 import { EMPTY_DRAFT, clearCart, saveCheckoutDraft, saveOrder, setBuyNow, useOguraState } from "@/state/store";
 import { formatINR } from "@/lib/format";
+import { DemoQr } from "@/components/commerce/DemoQr";
 import { EmptyState, Eyebrow, OgButton, OgInput, OgLinkButton } from "@/components/ui-og/primitives";
 
 export const Route = createFileRoute("/checkout")({
@@ -33,6 +35,7 @@ function CheckoutPage() {
   const [draft, setDraft] = useState<CheckoutDraft>(storedDraft ?? EMPTY_DRAFT);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [placing, setPlacing] = useState(false);
+  const [paid, setPaid] = useState(false);
   const [quote, setQuote] = useState<import("@/repositories/contracts").AuthoritativeQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
   const requiresAuth = supabase.isConfigured();
@@ -189,6 +192,7 @@ function CheckoutPage() {
         });
 
         setPlacing(false);
+        toast.success("Payment successful", { description: "Demo only — no money was charged." });
         navigate({ to: "/order/success/$orderId", params: { orderId: serverOrder.orderNumber } });
         return;
       }
@@ -203,6 +207,7 @@ function CheckoutPage() {
     if (buyNow) setBuyNow(null);
     else clearCart();
     setPlacing(false);
+    toast.success("Payment successful", { description: "Demo only — no money was charged." });
     navigate({ to: "/order/success/$orderId", params: { orderId: order.orderNumber } });
   };
 
@@ -310,6 +315,25 @@ function CheckoutPage() {
                 </label>
               ))}
               <p className="text-xs text-muted-text">No card details are collected in this prototype.</p>
+
+              <div className="mt-4 flex flex-col items-center gap-3 border border-border p-5 text-center">
+                <p className="text-[11px] uppercase tracking-[0.18em]">Scan to pay (sample)</p>
+                <DemoQr className="h-40 w-40" />
+                {paid ? (
+                  <p className="text-sm text-success">Payment successful (demo)</p>
+                ) : (
+                  <OgButton
+                    variant="secondary"
+                    onClick={() => {
+                      setPaid(true);
+                      toast.success("Payment successful", { description: "Demo only — no money was charged." });
+                    }}
+                  >
+                    Simulate payment
+                  </OgButton>
+                )}
+                <p className="text-xs text-muted-text">Sample QR for testing — no real payment is processed.</p>
+              </div>
             </fieldset>
           ) : null}
 
