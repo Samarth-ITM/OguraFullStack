@@ -343,6 +343,17 @@ function CheckoutPage() {
             </p>
           ) : null}
 
+          {requiresAuth && !authed ? (
+            <div className="border border-border p-4 text-sm">
+              <p className="text-secondary-text">Sign in with Google or your mobile number to complete this order.</p>
+              <OgLinkButton to="/account/profile" className="mt-3">
+                Sign in
+              </OgLinkButton>
+            </div>
+          ) : null}
+
+
+
           <div className="flex flex-wrap gap-3">
             {step > 0 ? (
               <OgButton variant="secondary" onClick={() => setStep((s) => s - 1)}>
