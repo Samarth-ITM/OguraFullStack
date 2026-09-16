@@ -10,33 +10,656 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as BrandsRouteImport } from './routes/brands'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DesignersRouteImport } from './routes/designers'
+import { Route as GiftCardRouteImport } from './routes/gift-card'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as JoinAsDesignerRouteImport } from './routes/join-as-designer'
+import { Route as LaunchpadRouteImport } from './routes/launchpad'
+import { Route as MadeToOrderRouteImport } from './routes/made-to-order'
+import { Route as NewInRouteImport } from './routes/new-in'
+import { Route as OccasionsRouteImport } from './routes/occasions'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReturnsRouteImport } from './routes/returns'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SellerRouteImport } from './routes/seller'
+import { Route as SellerProgramRouteImport } from './routes/seller-program'
+import { Route as ShippingRouteImport } from './routes/shipping'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as StoresRouteImport } from './routes/stores'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TrackOrderRouteImport } from './routes/track-order'
+import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as AccountIndexRouteImport } from './routes/account.index'
+import { Route as AccountAddressesRouteImport } from './routes/account.addresses'
+import { Route as AccountOrdersRouteImport } from './routes/account.orders'
+import { Route as AccountProfileRouteImport } from './routes/account.profile'
+import { Route as AccountWishlistRouteImport } from './routes/account.wishlist'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminCatalogRouteImport } from './routes/admin.catalog'
+import { Route as AdminMerchandisingRouteImport } from './routes/admin.merchandising'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as BrandBrandSlugRouteImport } from './routes/brand.$brandSlug'
+import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
+import { Route as CollectionsCollectionSlugRouteImport } from './routes/collections.$collectionSlug'
+import { Route as DesignerDesignerSlugRouteImport } from './routes/designer.$designerSlug'
+import { Route as OccasionOccasionSlugRouteImport } from './routes/occasion.$occasionSlug'
+import { Route as ProductProductSlugRouteImport } from './routes/product.$productSlug'
+import { Route as SellerIndexRouteImport } from './routes/seller.index'
+import { Route as SellerOrdersRouteImport } from './routes/seller.orders'
+import { Route as SellerPayoutsRouteImport } from './routes/seller.payouts'
+import { Route as SellerProductsRouteImport } from './routes/seller.products'
+import { Route as WomenCategorySlugRouteImport } from './routes/women.$categorySlug'
+import { Route as OrderSuccessOrderIdRouteImport } from './routes/order.success.$orderId'
+import { Route as WomenCategorySlugSubcategorySlugRouteImport } from './routes/women.$categorySlug.$subcategorySlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandsRoute = BrandsRouteImport.update({
+  id: '/brands',
+  path: '/brands',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignersRoute = DesignersRouteImport.update({
+  id: '/designers',
+  path: '/designers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftCardRoute = GiftCardRouteImport.update({
+  id: '/gift-card',
+  path: '/gift-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinAsDesignerRoute = JoinAsDesignerRouteImport.update({
+  id: '/join-as-designer',
+  path: '/join-as-designer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LaunchpadRoute = LaunchpadRouteImport.update({
+  id: '/launchpad',
+  path: '/launchpad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MadeToOrderRoute = MadeToOrderRouteImport.update({
+  id: '/made-to-order',
+  path: '/made-to-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewInRoute = NewInRouteImport.update({
+  id: '/new-in',
+  path: '/new-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OccasionsRoute = OccasionsRouteImport.update({
+  id: '/occasions',
+  path: '/occasions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReturnsRoute = ReturnsRouteImport.update({
+  id: '/returns',
+  path: '/returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellerRoute = SellerRouteImport.update({
+  id: '/seller',
+  path: '/seller',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellerProgramRoute = SellerProgramRouteImport.update({
+  id: '/seller-program',
+  path: '/seller-program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingRoute = ShippingRouteImport.update({
+  id: '/shipping',
+  path: '/shipping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoresRoute = StoresRouteImport.update({
+  id: '/stores',
+  path: '/stores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackOrderRoute = TrackOrderRouteImport.update({
+  id: '/track-order',
+  path: '/track-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountIndexRoute = AccountIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountAddressesRoute = AccountAddressesRouteImport.update({
+  id: '/addresses',
+  path: '/addresses',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountOrdersRoute = AccountOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountProfileRoute = AccountProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountWishlistRoute = AccountWishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCatalogRoute = AdminCatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMerchandisingRoute = AdminMerchandisingRouteImport.update({
+  id: '/merchandising',
+  path: '/merchandising',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const BrandBrandSlugRoute = BrandBrandSlugRouteImport.update({
+  id: '/brand/$brandSlug',
+  path: '/brand/$brandSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
+  id: '/collections/',
+  path: '/collections/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsCollectionSlugRoute =
+  CollectionsCollectionSlugRouteImport.update({
+    id: '/collections/$collectionSlug',
+    path: '/collections/$collectionSlug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DesignerDesignerSlugRoute = DesignerDesignerSlugRouteImport.update({
+  id: '/designer/$designerSlug',
+  path: '/designer/$designerSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OccasionOccasionSlugRoute = OccasionOccasionSlugRouteImport.update({
+  id: '/occasion/$occasionSlug',
+  path: '/occasion/$occasionSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductProductSlugRoute = ProductProductSlugRouteImport.update({
+  id: '/product/$productSlug',
+  path: '/product/$productSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellerIndexRoute = SellerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerOrdersRoute = SellerOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerPayoutsRoute = SellerPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerProductsRoute = SellerProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => SellerRoute,
+} as any)
+const WomenCategorySlugRoute = WomenCategorySlugRouteImport.update({
+  id: '/women/$categorySlug',
+  path: '/women/$categorySlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderSuccessOrderIdRoute = OrderSuccessOrderIdRouteImport.update({
+  id: '/order/success/$orderId',
+  path: '/order/success/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WomenCategorySlugSubcategorySlugRoute =
+  WomenCategorySlugSubcategorySlugRouteImport.update({
+    id: '/$subcategorySlug',
+    path: '/$subcategorySlug',
+    getParentRoute: () => WomenCategorySlugRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/brands': typeof BrandsRoute
+  '/careers': typeof CareersRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
+  '/designers': typeof DesignersRoute
+  '/gift-card': typeof GiftCardRoute
+  '/help': typeof HelpRoute
+  '/join-as-designer': typeof JoinAsDesignerRoute
+  '/launchpad': typeof LaunchpadRoute
+  '/made-to-order': typeof MadeToOrderRoute
+  '/new-in': typeof NewInRoute
+  '/occasions': typeof OccasionsRoute
+  '/privacy': typeof PrivacyRoute
+  '/returns': typeof ReturnsRoute
+  '/search': typeof SearchRoute
+  '/seller': typeof SellerRouteWithChildren
+  '/seller-program': typeof SellerProgramRoute
+  '/shipping': typeof ShippingRoute
+  '/shop': typeof ShopRoute
+  '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/track-order': typeof TrackOrderRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/catalog': typeof AdminCatalogRoute
+  '/admin/merchandising': typeof AdminMerchandisingRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/brand/$brandSlug': typeof BrandBrandSlugRoute
+  '/collections/$collectionSlug': typeof CollectionsCollectionSlugRoute
+  '/designer/$designerSlug': typeof DesignerDesignerSlugRoute
+  '/occasion/$occasionSlug': typeof OccasionOccasionSlugRoute
+  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/payouts': typeof SellerPayoutsRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/women/$categorySlug': typeof WomenCategorySlugRouteWithChildren
+  '/account/': typeof AccountIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/collections/': typeof CollectionsIndexRoute
+  '/seller/': typeof SellerIndexRoute
+  '/order/success/$orderId': typeof OrderSuccessOrderIdRoute
+  '/women/$categorySlug/$subcategorySlug': typeof WomenCategorySlugSubcategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/brands': typeof BrandsRoute
+  '/careers': typeof CareersRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
+  '/designers': typeof DesignersRoute
+  '/gift-card': typeof GiftCardRoute
+  '/help': typeof HelpRoute
+  '/join-as-designer': typeof JoinAsDesignerRoute
+  '/launchpad': typeof LaunchpadRoute
+  '/made-to-order': typeof MadeToOrderRoute
+  '/new-in': typeof NewInRoute
+  '/occasions': typeof OccasionsRoute
+  '/privacy': typeof PrivacyRoute
+  '/returns': typeof ReturnsRoute
+  '/search': typeof SearchRoute
+  '/seller-program': typeof SellerProgramRoute
+  '/shipping': typeof ShippingRoute
+  '/shop': typeof ShopRoute
+  '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/track-order': typeof TrackOrderRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/catalog': typeof AdminCatalogRoute
+  '/admin/merchandising': typeof AdminMerchandisingRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/brand/$brandSlug': typeof BrandBrandSlugRoute
+  '/collections/$collectionSlug': typeof CollectionsCollectionSlugRoute
+  '/designer/$designerSlug': typeof DesignerDesignerSlugRoute
+  '/occasion/$occasionSlug': typeof OccasionOccasionSlugRoute
+  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/payouts': typeof SellerPayoutsRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/women/$categorySlug': typeof WomenCategorySlugRouteWithChildren
+  '/account': typeof AccountIndexRoute
+  '/admin': typeof AdminIndexRoute
+  '/collections': typeof CollectionsIndexRoute
+  '/seller': typeof SellerIndexRoute
+  '/order/success/$orderId': typeof OrderSuccessOrderIdRoute
+  '/women/$categorySlug/$subcategorySlug': typeof WomenCategorySlugSubcategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/brands': typeof BrandsRoute
+  '/careers': typeof CareersRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
+  '/designers': typeof DesignersRoute
+  '/gift-card': typeof GiftCardRoute
+  '/help': typeof HelpRoute
+  '/join-as-designer': typeof JoinAsDesignerRoute
+  '/launchpad': typeof LaunchpadRoute
+  '/made-to-order': typeof MadeToOrderRoute
+  '/new-in': typeof NewInRoute
+  '/occasions': typeof OccasionsRoute
+  '/privacy': typeof PrivacyRoute
+  '/returns': typeof ReturnsRoute
+  '/search': typeof SearchRoute
+  '/seller': typeof SellerRouteWithChildren
+  '/seller-program': typeof SellerProgramRoute
+  '/shipping': typeof ShippingRoute
+  '/shop': typeof ShopRoute
+  '/stores': typeof StoresRoute
+  '/terms': typeof TermsRoute
+  '/track-order': typeof TrackOrderRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/catalog': typeof AdminCatalogRoute
+  '/admin/merchandising': typeof AdminMerchandisingRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/brand/$brandSlug': typeof BrandBrandSlugRoute
+  '/collections/$collectionSlug': typeof CollectionsCollectionSlugRoute
+  '/designer/$designerSlug': typeof DesignerDesignerSlugRoute
+  '/occasion/$occasionSlug': typeof OccasionOccasionSlugRoute
+  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/payouts': typeof SellerPayoutsRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/women/$categorySlug': typeof WomenCategorySlugRouteWithChildren
+  '/account/': typeof AccountIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/collections/': typeof CollectionsIndexRoute
+  '/seller/': typeof SellerIndexRoute
+  '/order/success/$orderId': typeof OrderSuccessOrderIdRoute
+  '/women/$categorySlug/$subcategorySlug': typeof WomenCategorySlugSubcategorySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/account'
+    | '/admin'
+    | '/brands'
+    | '/careers'
+    | '/cart'
+    | '/checkout'
+    | '/contact'
+    | '/designers'
+    | '/gift-card'
+    | '/help'
+    | '/join-as-designer'
+    | '/launchpad'
+    | '/made-to-order'
+    | '/new-in'
+    | '/occasions'
+    | '/privacy'
+    | '/returns'
+    | '/search'
+    | '/seller'
+    | '/seller-program'
+    | '/shipping'
+    | '/shop'
+    | '/stores'
+    | '/terms'
+    | '/track-order'
+    | '/wishlist'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/catalog'
+    | '/admin/merchandising'
+    | '/admin/orders'
+    | '/brand/$brandSlug'
+    | '/collections/$collectionSlug'
+    | '/designer/$designerSlug'
+    | '/occasion/$occasionSlug'
+    | '/product/$productSlug'
+    | '/seller/orders'
+    | '/seller/payouts'
+    | '/seller/products'
+    | '/women/$categorySlug'
+    | '/account/'
+    | '/admin/'
+    | '/collections/'
+    | '/seller/'
+    | '/order/success/$orderId'
+    | '/women/$categorySlug/$subcategorySlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/brands'
+    | '/careers'
+    | '/cart'
+    | '/checkout'
+    | '/contact'
+    | '/designers'
+    | '/gift-card'
+    | '/help'
+    | '/join-as-designer'
+    | '/launchpad'
+    | '/made-to-order'
+    | '/new-in'
+    | '/occasions'
+    | '/privacy'
+    | '/returns'
+    | '/search'
+    | '/seller-program'
+    | '/shipping'
+    | '/shop'
+    | '/stores'
+    | '/terms'
+    | '/track-order'
+    | '/wishlist'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/catalog'
+    | '/admin/merchandising'
+    | '/admin/orders'
+    | '/brand/$brandSlug'
+    | '/collections/$collectionSlug'
+    | '/designer/$designerSlug'
+    | '/occasion/$occasionSlug'
+    | '/product/$productSlug'
+    | '/seller/orders'
+    | '/seller/payouts'
+    | '/seller/products'
+    | '/women/$categorySlug'
+    | '/account'
+    | '/admin'
+    | '/collections'
+    | '/seller'
+    | '/order/success/$orderId'
+    | '/women/$categorySlug/$subcategorySlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/account'
+    | '/admin'
+    | '/brands'
+    | '/careers'
+    | '/cart'
+    | '/checkout'
+    | '/contact'
+    | '/designers'
+    | '/gift-card'
+    | '/help'
+    | '/join-as-designer'
+    | '/launchpad'
+    | '/made-to-order'
+    | '/new-in'
+    | '/occasions'
+    | '/privacy'
+    | '/returns'
+    | '/search'
+    | '/seller'
+    | '/seller-program'
+    | '/shipping'
+    | '/shop'
+    | '/stores'
+    | '/terms'
+    | '/track-order'
+    | '/wishlist'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/catalog'
+    | '/admin/merchandising'
+    | '/admin/orders'
+    | '/brand/$brandSlug'
+    | '/collections/$collectionSlug'
+    | '/designer/$designerSlug'
+    | '/occasion/$occasionSlug'
+    | '/product/$productSlug'
+    | '/seller/orders'
+    | '/seller/payouts'
+    | '/seller/products'
+    | '/women/$categorySlug'
+    | '/account/'
+    | '/admin/'
+    | '/collections/'
+    | '/seller/'
+    | '/order/success/$orderId'
+    | '/women/$categorySlug/$subcategorySlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRouteWithChildren
+  AdminRoute: typeof AdminRouteWithChildren
+  BrandsRoute: typeof BrandsRoute
+  CareersRoute: typeof CareersRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
+  ContactRoute: typeof ContactRoute
+  DesignersRoute: typeof DesignersRoute
+  GiftCardRoute: typeof GiftCardRoute
+  HelpRoute: typeof HelpRoute
+  JoinAsDesignerRoute: typeof JoinAsDesignerRoute
+  LaunchpadRoute: typeof LaunchpadRoute
+  MadeToOrderRoute: typeof MadeToOrderRoute
+  NewInRoute: typeof NewInRoute
+  OccasionsRoute: typeof OccasionsRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ReturnsRoute: typeof ReturnsRoute
+  SearchRoute: typeof SearchRoute
+  SellerRoute: typeof SellerRouteWithChildren
+  SellerProgramRoute: typeof SellerProgramRoute
+  ShippingRoute: typeof ShippingRoute
+  ShopRoute: typeof ShopRoute
+  StoresRoute: typeof StoresRoute
+  TermsRoute: typeof TermsRoute
+  TrackOrderRoute: typeof TrackOrderRoute
+  WishlistRoute: typeof WishlistRoute
+  BrandBrandSlugRoute: typeof BrandBrandSlugRoute
+  CollectionsCollectionSlugRoute: typeof CollectionsCollectionSlugRoute
+  DesignerDesignerSlugRoute: typeof DesignerDesignerSlugRoute
+  OccasionOccasionSlugRoute: typeof OccasionOccasionSlugRoute
+  ProductProductSlugRoute: typeof ProductProductSlugRoute
+  WomenCategorySlugRoute: typeof WomenCategorySlugRouteWithChildren
+  CollectionsIndexRoute: typeof CollectionsIndexRoute
+  OrderSuccessOrderIdRoute: typeof OrderSuccessOrderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +671,452 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brands': {
+      id: '/brands'
+      path: '/brands'
+      fullPath: '/brands'
+      preLoaderRoute: typeof BrandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/designers': {
+      id: '/designers'
+      path: '/designers'
+      fullPath: '/designers'
+      preLoaderRoute: typeof DesignersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift-card': {
+      id: '/gift-card'
+      path: '/gift-card'
+      fullPath: '/gift-card'
+      preLoaderRoute: typeof GiftCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join-as-designer': {
+      id: '/join-as-designer'
+      path: '/join-as-designer'
+      fullPath: '/join-as-designer'
+      preLoaderRoute: typeof JoinAsDesignerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/launchpad': {
+      id: '/launchpad'
+      path: '/launchpad'
+      fullPath: '/launchpad'
+      preLoaderRoute: typeof LaunchpadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/made-to-order': {
+      id: '/made-to-order'
+      path: '/made-to-order'
+      fullPath: '/made-to-order'
+      preLoaderRoute: typeof MadeToOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-in': {
+      id: '/new-in'
+      path: '/new-in'
+      fullPath: '/new-in'
+      preLoaderRoute: typeof NewInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/occasions': {
+      id: '/occasions'
+      path: '/occasions'
+      fullPath: '/occasions'
+      preLoaderRoute: typeof OccasionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/returns': {
+      id: '/returns'
+      path: '/returns'
+      fullPath: '/returns'
+      preLoaderRoute: typeof ReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seller': {
+      id: '/seller'
+      path: '/seller'
+      fullPath: '/seller'
+      preLoaderRoute: typeof SellerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seller-program': {
+      id: '/seller-program'
+      path: '/seller-program'
+      fullPath: '/seller-program'
+      preLoaderRoute: typeof SellerProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shipping': {
+      id: '/shipping'
+      path: '/shipping'
+      fullPath: '/shipping'
+      preLoaderRoute: typeof ShippingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stores': {
+      id: '/stores'
+      path: '/stores'
+      fullPath: '/stores'
+      preLoaderRoute: typeof StoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track-order': {
+      id: '/track-order'
+      path: '/track-order'
+      fullPath: '/track-order'
+      preLoaderRoute: typeof TrackOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/': {
+      id: '/account/'
+      path: '/'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AccountIndexRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/addresses': {
+      id: '/account/addresses'
+      path: '/addresses'
+      fullPath: '/account/addresses'
+      preLoaderRoute: typeof AccountAddressesRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/orders': {
+      id: '/account/orders'
+      path: '/orders'
+      fullPath: '/account/orders'
+      preLoaderRoute: typeof AccountOrdersRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/profile': {
+      id: '/account/profile'
+      path: '/profile'
+      fullPath: '/account/profile'
+      preLoaderRoute: typeof AccountProfileRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/wishlist': {
+      id: '/account/wishlist'
+      path: '/wishlist'
+      fullPath: '/account/wishlist'
+      preLoaderRoute: typeof AccountWishlistRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/catalog': {
+      id: '/admin/catalog'
+      path: '/catalog'
+      fullPath: '/admin/catalog'
+      preLoaderRoute: typeof AdminCatalogRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/merchandising': {
+      id: '/admin/merchandising'
+      path: '/merchandising'
+      fullPath: '/admin/merchandising'
+      preLoaderRoute: typeof AdminMerchandisingRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/brand/$brandSlug': {
+      id: '/brand/$brandSlug'
+      path: '/brand/$brandSlug'
+      fullPath: '/brand/$brandSlug'
+      preLoaderRoute: typeof BrandBrandSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/': {
+      id: '/collections/'
+      path: '/collections'
+      fullPath: '/collections/'
+      preLoaderRoute: typeof CollectionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$collectionSlug': {
+      id: '/collections/$collectionSlug'
+      path: '/collections/$collectionSlug'
+      fullPath: '/collections/$collectionSlug'
+      preLoaderRoute: typeof CollectionsCollectionSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/designer/$designerSlug': {
+      id: '/designer/$designerSlug'
+      path: '/designer/$designerSlug'
+      fullPath: '/designer/$designerSlug'
+      preLoaderRoute: typeof DesignerDesignerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/occasion/$occasionSlug': {
+      id: '/occasion/$occasionSlug'
+      path: '/occasion/$occasionSlug'
+      fullPath: '/occasion/$occasionSlug'
+      preLoaderRoute: typeof OccasionOccasionSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$productSlug': {
+      id: '/product/$productSlug'
+      path: '/product/$productSlug'
+      fullPath: '/product/$productSlug'
+      preLoaderRoute: typeof ProductProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seller/': {
+      id: '/seller/'
+      path: '/'
+      fullPath: '/seller/'
+      preLoaderRoute: typeof SellerIndexRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/orders': {
+      id: '/seller/orders'
+      path: '/orders'
+      fullPath: '/seller/orders'
+      preLoaderRoute: typeof SellerOrdersRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/payouts': {
+      id: '/seller/payouts'
+      path: '/payouts'
+      fullPath: '/seller/payouts'
+      preLoaderRoute: typeof SellerPayoutsRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/products': {
+      id: '/seller/products'
+      path: '/products'
+      fullPath: '/seller/products'
+      preLoaderRoute: typeof SellerProductsRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/women/$categorySlug': {
+      id: '/women/$categorySlug'
+      path: '/women/$categorySlug'
+      fullPath: '/women/$categorySlug'
+      preLoaderRoute: typeof WomenCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/success/$orderId': {
+      id: '/order/success/$orderId'
+      path: '/order/success/$orderId'
+      fullPath: '/order/success/$orderId'
+      preLoaderRoute: typeof OrderSuccessOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/women/$categorySlug/$subcategorySlug': {
+      id: '/women/$categorySlug/$subcategorySlug'
+      path: '/$subcategorySlug'
+      fullPath: '/women/$categorySlug/$subcategorySlug'
+      preLoaderRoute: typeof WomenCategorySlugSubcategorySlugRouteImport
+      parentRoute: typeof WomenCategorySlugRoute
+    }
   }
 }
 
+interface AccountRouteChildren {
+  AccountAddressesRoute: typeof AccountAddressesRoute
+  AccountOrdersRoute: typeof AccountOrdersRoute
+  AccountProfileRoute: typeof AccountProfileRoute
+  AccountWishlistRoute: typeof AccountWishlistRoute
+  AccountIndexRoute: typeof AccountIndexRoute
+}
+
+const AccountRouteChildren: AccountRouteChildren = {
+  AccountAddressesRoute: AccountAddressesRoute,
+  AccountOrdersRoute: AccountOrdersRoute,
+  AccountProfileRoute: AccountProfileRoute,
+  AccountWishlistRoute: AccountWishlistRoute,
+  AccountIndexRoute: AccountIndexRoute,
+}
+
+const AccountRouteWithChildren =
+  AccountRoute._addFileChildren(AccountRouteChildren)
+
+interface AdminRouteChildren {
+  AdminCatalogRoute: typeof AdminCatalogRoute
+  AdminMerchandisingRoute: typeof AdminMerchandisingRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCatalogRoute: AdminCatalogRoute,
+  AdminMerchandisingRoute: AdminMerchandisingRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface SellerRouteChildren {
+  SellerOrdersRoute: typeof SellerOrdersRoute
+  SellerPayoutsRoute: typeof SellerPayoutsRoute
+  SellerProductsRoute: typeof SellerProductsRoute
+  SellerIndexRoute: typeof SellerIndexRoute
+}
+
+const SellerRouteChildren: SellerRouteChildren = {
+  SellerOrdersRoute: SellerOrdersRoute,
+  SellerPayoutsRoute: SellerPayoutsRoute,
+  SellerProductsRoute: SellerProductsRoute,
+  SellerIndexRoute: SellerIndexRoute,
+}
+
+const SellerRouteWithChildren =
+  SellerRoute._addFileChildren(SellerRouteChildren)
+
+interface WomenCategorySlugRouteChildren {
+  WomenCategorySlugSubcategorySlugRoute: typeof WomenCategorySlugSubcategorySlugRoute
+}
+
+const WomenCategorySlugRouteChildren: WomenCategorySlugRouteChildren = {
+  WomenCategorySlugSubcategorySlugRoute: WomenCategorySlugSubcategorySlugRoute,
+}
+
+const WomenCategorySlugRouteWithChildren =
+  WomenCategorySlugRoute._addFileChildren(WomenCategorySlugRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AccountRoute: AccountRouteWithChildren,
+  AdminRoute: AdminRouteWithChildren,
+  BrandsRoute: BrandsRoute,
+  CareersRoute: CareersRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
+  ContactRoute: ContactRoute,
+  DesignersRoute: DesignersRoute,
+  GiftCardRoute: GiftCardRoute,
+  HelpRoute: HelpRoute,
+  JoinAsDesignerRoute: JoinAsDesignerRoute,
+  LaunchpadRoute: LaunchpadRoute,
+  MadeToOrderRoute: MadeToOrderRoute,
+  NewInRoute: NewInRoute,
+  OccasionsRoute: OccasionsRoute,
+  PrivacyRoute: PrivacyRoute,
+  ReturnsRoute: ReturnsRoute,
+  SearchRoute: SearchRoute,
+  SellerRoute: SellerRouteWithChildren,
+  SellerProgramRoute: SellerProgramRoute,
+  ShippingRoute: ShippingRoute,
+  ShopRoute: ShopRoute,
+  StoresRoute: StoresRoute,
+  TermsRoute: TermsRoute,
+  TrackOrderRoute: TrackOrderRoute,
+  WishlistRoute: WishlistRoute,
+  BrandBrandSlugRoute: BrandBrandSlugRoute,
+  CollectionsCollectionSlugRoute: CollectionsCollectionSlugRoute,
+  DesignerDesignerSlugRoute: DesignerDesignerSlugRoute,
+  OccasionOccasionSlugRoute: OccasionOccasionSlugRoute,
+  ProductProductSlugRoute: ProductProductSlugRoute,
+  WomenCategorySlugRoute: WomenCategorySlugRouteWithChildren,
+  CollectionsIndexRoute: CollectionsIndexRoute,
+  OrderSuccessOrderIdRoute: OrderSuccessOrderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
