@@ -192,6 +192,7 @@ function CheckoutPage() {
         });
 
         setPlacing(false);
+        toast.success("Payment successful", { description: "Demo only — no money was charged." });
         navigate({ to: "/order/success/$orderId", params: { orderId: serverOrder.orderNumber } });
         return;
       }
@@ -206,6 +207,7 @@ function CheckoutPage() {
     if (buyNow) setBuyNow(null);
     else clearCart();
     setPlacing(false);
+    toast.success("Payment successful", { description: "Demo only — no money was charged." });
     navigate({ to: "/order/success/$orderId", params: { orderId: order.orderNumber } });
   };
 
