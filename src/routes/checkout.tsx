@@ -35,6 +35,19 @@ function CheckoutPage() {
   const [placing, setPlacing] = useState(false);
   const [quote, setQuote] = useState<import("@/repositories/contracts").AuthoritativeQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
+  const requiresAuth = supabase.isConfigured();
+  const [authed, setAuthed] = useState(!requiresAuth);
+
+  useEffect(() => {
+    if (!requiresAuth) return;
+    let active = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setAuthed(Boolean(data.session?.access_token));
+    });
+    return () => {
+      active = false;
+    };
+  }, [requiresAuth]);
 
   const lines = buyNow ? [buyNow] : cartLines;
   const rows = useMemo(
