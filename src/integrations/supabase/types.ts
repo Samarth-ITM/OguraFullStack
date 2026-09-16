@@ -1039,6 +1039,7 @@ export type Database = {
         Row: {
           created_at: string
           discount_paise: number
+          fulfilled_at: string | null
           id: string
           order_number: string
           quote_id: string | null
@@ -1054,6 +1055,7 @@ export type Database = {
         Insert: {
           created_at?: string
           discount_paise?: number
+          fulfilled_at?: string | null
           id?: string
           order_number: string
           quote_id?: string | null
@@ -1069,6 +1071,7 @@ export type Database = {
         Update: {
           created_at?: string
           discount_paise?: number
+          fulfilled_at?: string | null
           id?: string
           order_number?: string
           quote_id?: string | null
@@ -1871,14 +1874,21 @@ export type Database = {
       }
       seller_sub_orders: {
         Row: {
+          accepted_at: string | null
+          awb: string | null
+          cancellation_reason: string | null
           commission_paise: number
+          courier: string | null
           created_at: string
+          delivered_at: string | null
           discount_paise: number
+          dispatched_at: string | null
           id: string
           logistics_deduction_paise: number
           net_seller_payable_paise: number
           order_id: string
           seller_id: string
+          ship_by: string | null
           status: Database["public"]["Enums"]["sub_order_status"]
           sub_order_number: string
           subtotal_paise: number
@@ -1889,14 +1899,21 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          accepted_at?: string | null
+          awb?: string | null
+          cancellation_reason?: string | null
           commission_paise?: number
+          courier?: string | null
           created_at?: string
+          delivered_at?: string | null
           discount_paise?: number
+          dispatched_at?: string | null
           id?: string
           logistics_deduction_paise?: number
           net_seller_payable_paise: number
           order_id: string
           seller_id: string
+          ship_by?: string | null
           status?: Database["public"]["Enums"]["sub_order_status"]
           sub_order_number: string
           subtotal_paise: number
@@ -1907,14 +1924,21 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          accepted_at?: string | null
+          awb?: string | null
+          cancellation_reason?: string | null
           commission_paise?: number
+          courier?: string | null
           created_at?: string
+          delivered_at?: string | null
           discount_paise?: number
+          dispatched_at?: string | null
           id?: string
           logistics_deduction_paise?: number
           net_seller_payable_paise?: number
           order_id?: string
           seller_id?: string
+          ship_by?: string | null
           status?: Database["public"]["Enums"]["sub_order_status"]
           sub_order_number?: string
           subtotal_paise?: number
@@ -2308,6 +2332,15 @@ export type Database = {
         Returns: string
       }
       create_order_from_quote: { Args: { p_quote_id: string }; Returns: Json }
+      create_shipment: {
+        Args: {
+          p_awb_number: string
+          p_carrier: string
+          p_sub_order_id: string
+          p_tracking_url?: string
+        }
+        Returns: Json
+      }
       current_seller_id: { Args: never; Returns: string }
       expire_inventory_reservation: {
         Args: { p_reservation_id: string }
@@ -2340,6 +2373,10 @@ export type Database = {
         Returns: Json
       }
       get_public_product_by_slug: { Args: { p_slug: string }; Returns: Json }
+      get_sub_order_fulfillment_details: {
+        Args: { p_sub_order_id: string }
+        Returns: Json
+      }
       get_variant_available_stock: {
         Args: { p_variant_id: string }
         Returns: number
@@ -2355,6 +2392,16 @@ export type Database = {
       }
       is_verified_purchase: { Args: { p_product_id: string }; Returns: boolean }
       merge_guest_cart: { Args: { p_session_id: string }; Returns: boolean }
+      process_tracking_webhook: {
+        Args: {
+          p_event_id: string
+          p_event_type: string
+          p_payload: Json
+          p_provider: string
+          p_webhook_secret?: string
+        }
+        Returns: Json
+      }
       product_has_available_inventory: {
         Args: { p_product_id: string }
         Returns: boolean
@@ -2393,6 +2440,28 @@ export type Database = {
         }
         Returns: boolean
       }
+      seller_accept_sub_order: {
+        Args: { p_sub_order_id: string }
+        Returns: Json
+      }
+      seller_ship_sub_order: {
+        Args: {
+          p_awb_number?: string
+          p_carrier?: string
+          p_shipping_mode?: string
+          p_sub_order_id: string
+          p_tracking_url?: string
+        }
+        Returns: Json
+      }
+      seller_update_sub_order_status: {
+        Args: {
+          p_notes?: string
+          p_status: Database["public"]["Enums"]["sub_order_status"]
+          p_sub_order_id: string
+        }
+        Returns: Json
+      }
       set_default_customer_address: {
         Args: { p_address_id: string }
         Returns: boolean
@@ -2411,10 +2480,23 @@ export type Database = {
         Args: { p_reason: string; p_seller_id: string }
         Returns: boolean
       }
+      sync_parent_order_fulfillment_status: {
+        Args: { p_order_id: string }
+        Returns: undefined
+      }
       toggle_wishlist_item: { Args: { p_product_id: string }; Returns: boolean }
       update_cart_line_quantity: {
         Args: { p_line_id: string; p_quantity: number }
         Returns: boolean
+      }
+      update_shipment_status: {
+        Args: {
+          p_notes?: string
+          p_shipment_id: string
+          p_status: Database["public"]["Enums"]["shipment_status"]
+          p_webhook_secret?: string
+        }
+        Returns: Json
       }
       verify_seller_bank_account: {
         Args: {
