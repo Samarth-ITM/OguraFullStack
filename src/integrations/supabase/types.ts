@@ -2257,6 +2257,10 @@ export type Database = {
       }
     }
     Functions: {
+      add_to_customer_cart: {
+        Args: { p_quantity?: number; p_variant_id: string }
+        Returns: string
+      }
       apply_as_seller: {
         Args: {
           p_business_name: string
@@ -2273,7 +2277,11 @@ export type Database = {
         Args: { p_product_id: string }
         Returns: boolean
       }
+      clear_customer_cart: { Args: never; Returns: boolean }
       current_seller_id: { Args: never; Returns: string }
+      get_customer_cart: { Args: never; Returns: Json }
+      get_customer_wishlist: { Args: never; Returns: Json }
+      get_or_create_customer_cart: { Args: never; Returns: string }
       get_public_catalog: {
         Args: {
           p_brand_slugs?: string[]
@@ -2302,6 +2310,7 @@ export type Database = {
         Returns: boolean
       }
       is_verified_purchase: { Args: { p_product_id: string }; Returns: boolean }
+      merge_guest_cart: { Args: { p_session_id: string }; Returns: boolean }
       product_has_available_inventory: {
         Args: { p_product_id: string }
         Returns: boolean
@@ -2311,12 +2320,17 @@ export type Database = {
         Args: { p_product_id: string; p_reason: string }
         Returns: Json
       }
+      remove_cart_line: { Args: { p_line_id: string }; Returns: boolean }
       review_seller_kyc_document: {
         Args: {
           p_document_id: string
           p_rejection_reason?: string
           p_status: Database["public"]["Enums"]["kyc_verification_status"]
         }
+        Returns: boolean
+      }
+      set_default_customer_address: {
+        Args: { p_address_id: string }
         Returns: boolean
       }
       set_seller_razorpay_account: {
@@ -2331,6 +2345,11 @@ export type Database = {
       }
       suspend_seller: {
         Args: { p_reason: string; p_seller_id: string }
+        Returns: boolean
+      }
+      toggle_wishlist_item: { Args: { p_product_id: string }; Returns: boolean }
+      update_cart_line_quantity: {
+        Args: { p_line_id: string; p_quantity: number }
         Returns: boolean
       }
       verify_seller_bank_account: {
