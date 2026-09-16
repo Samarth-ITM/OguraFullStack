@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { signIn, signOut, useOguraState } from "@/state/store";
 import { accountRepository } from "@/repositories";
 import { supabase } from "@/lib/supabase";
+import { lovable } from "@/integrations/lovable";
 import { OgButton, OgInput } from "@/components/ui-og/primitives";
 
 export const Route = createFileRoute("/account/profile")({
