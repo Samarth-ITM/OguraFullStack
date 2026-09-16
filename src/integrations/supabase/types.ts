@@ -2277,6 +2277,7 @@ export type Database = {
         Args: { p_product_id: string }
         Returns: boolean
       }
+      cancel_checkout_quote: { Args: { p_quote_id: string }; Returns: boolean }
       clear_customer_cart: { Args: never; Returns: boolean }
       consume_inventory_reservation: {
         Args: { p_reservation_id: string }
@@ -2285,6 +2286,10 @@ export type Database = {
       consume_quote_reservations: {
         Args: { p_quote_id: string }
         Returns: number
+      }
+      create_checkout_quote: {
+        Args: { p_address_id?: string; p_custom_address?: Json }
+        Returns: Json
       }
       create_inventory_reservation: {
         Args: { p_quantity: number; p_quote_id: string; p_variant_id: string }
@@ -2299,6 +2304,7 @@ export type Database = {
         Args: { p_batch_limit?: number }
         Returns: number
       }
+      get_checkout_quote: { Args: { p_quote_id: string }; Returns: Json }
       get_customer_cart: { Args: never; Returns: Json }
       get_customer_wishlist: { Args: never; Returns: Json }
       get_or_create_customer_cart: { Args: never; Returns: string }
